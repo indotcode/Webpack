@@ -1,0 +1,54 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "dev-development": "webpack --mode development",
+    "dev-production": "webpack --mode production",
+    "watch": "webpack --watch --mode development",
+    "start": "webpack-dev-server --mode development --open"
+  },
+  "author": "Alex Tinarskiy (tinarskiy@bk.ru)",
+  "license": "ISC",
+  "browserslist": [
+    "> 1%",
+    "last 3 version"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^9.8.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.0.3",
+    "css-loader": "^3.6.0",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^4.1.10",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "html-loader": "^1.1.0",
+    "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
+    "postcss-loader": "^3.0.0",
+    "replace-in-file-webpack-plugin": "^1.0.6",
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
+    "file-loader": "^6.0.0",
+    "fs": "0.0.1-security",
+    "fullpage.js": "^3.0.9",
+    "imask": "^6.0.5",
+    "jquery": "^3.5.1",
+    "normalize.css": "^8.0.1",
+    "owl.carousel": "^2.3.4",
+    "parallax-js": "^3.1.0",
+    "precss": "^4.0.0",
+    "slick-carousel": "^1.8.1",
+    "vue": "^2.6.11",
+    "vue-owl-carousel": "^2.0.3"
+  }
+}
