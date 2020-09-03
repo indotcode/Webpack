@@ -6,9 +6,12 @@
   "scripts": {
     "dist-development": "webpack --mode development",
     "dist-production": "webpack --mode production",
-    "dist-production-wordpress": "webpack --mode production --env.cms=wordpress",
     "watch": "webpack --watch --mode development",
-    "start": "webpack-dev-server --mode development --open"
+    "server": "webpack-dev-server --mode development --open",
+    "wordpress-dist-production": "webpack --mode production --env.cms=wordpress --env.theme=main",
+    "wordpress-dist-development": "webpack --mode development --env.cms=wordpress --env.theme=main",
+    "wordpress-watch-development": "webpack --watch --mode development --env.cms=wordpress --env.theme=main",
+    "wordpress-server-development": "webpack-dev-server --mode development --env.cms=wordpress --env.theme=main"
   },
   "author": "Alex Tinarskiy (tinarskiy@bk.ru)",
   "license": "ISC",

@@ -5,20 +5,35 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const fs = require('fs');
 const { env } = require('process');
+
+const server = {
+    port: 3000,
+    host: '192.168.0.102'
+}
 
 const isProduction = process.argv[process.argv.indexOf('--mode') + 1] === 'production';
 
 module.exports = env => {
-    const mode = isProduction ? 'production' : 'development';
-    const htmlPlugins = generateHtmlPlugins('./source')
+    let mode = isProduction ? 'production' : 'development';
+    let pluginsResult = generateHtmlPlugins('./source');
+    pluginsResult[pluginsResult.length] = new MiniCssExtractPlugin({
+        filename: 'css/style.css'
+    });
+    let output = {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'js/script.js'
+    };
     if(env){
         if(env.cms){
             switch(env.cms){
                 case 'wordpress':
-                    htmlPlugins = []
+                    output = {
+                        path: path.resolve(__dirname, 'wp-content/themes/'+ env.theme+'/assets'),
+                        filename: 'js/script.js'
+                    }
                     break;
             }
         }
@@ -28,10 +43,7 @@ module.exports = env => {
         entry: {
             script : './source/script.js'
         },
-        output: {
-            path: path.resolve(__dirname, 'dist'),
-            filename: 'js/script.js'
-        },
+        output: output,
         plugins: [
             // new htmlPlugins(),
             // new HtmlWebpackPlugin({
@@ -72,21 +84,23 @@ module.exports = env => {
             //         }
             //     ]
             // }),
-            new MiniCssExtractPlugin({
-                filename: 'css/style.css'
-            }),
             new webpack.ProvidePlugin({
                 $: "jquery",
                 jQuery: "jquery",
                 "window.jQuery": "jquery"
             })
-        ].concat(htmlPlugins),
+        ].concat(pluginsResult),
         module: {
             rules: [
                 {
                     test: /\.s[ac]ss$/,
                     use: [
-                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: MiniCssExtractPlugin.loader,
+                            options: {
+                              hmr: mode === 'development',
+                            }
+                        },
                         'css-loader',
                         {
                             loader: 'postcss-loader',
@@ -137,10 +151,7 @@ module.exports = env => {
                 }
             ]
         },
-        devServer: {
-            port: 3000,
-            host: '192.168.1.67'
-        }
+        devServer: server
     };
 };
 
