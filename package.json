@@ -4,8 +4,9 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev-development": "webpack --mode development",
-    "dev-production": "webpack --mode production",
+    "dist-development": "webpack --mode development",
+    "dist-production": "webpack --mode production",
+    "dist-production-wordpress": "webpack --mode production --env.cms=wordpress",
     "watch": "webpack --watch --mode development",
     "start": "webpack-dev-server --mode development --open"
   },

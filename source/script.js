@@ -4,7 +4,7 @@ import $ from "jquery";
 
 // require('./components/owl-carousel/owl.carousel');
 
-import "./components/slick-carousel/slick"
+import "./components_default/slick-carousel/slick"
 
 import "@fancyapps/fancybox"
 
