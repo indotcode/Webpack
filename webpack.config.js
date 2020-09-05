@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const fs = require('fs');
 const { env } = require('process');
 
@@ -45,6 +46,7 @@ module.exports = env => {
         },
         output: output,
         plugins: [
+            new VueLoaderPlugin(),
             // new htmlPlugins(),
             // new HtmlWebpackPlugin({
             //     filename: 'catalog.html',
@@ -107,6 +109,17 @@ module.exports = env => {
                     options:{
                         presets:["@babel/preset-env", "@babel/preset-react"]
                     }
+                },
+                {
+                    test: /\.vue$/,
+                    loader: 'vue-loader'
+                },
+                {
+                    test: /\.css$/,
+                    use: [
+                      'vue-style-loader',
+                      'css-loader'
+                    ]
                 },
                 {
                     test: /\.s[ac]ss$/,
