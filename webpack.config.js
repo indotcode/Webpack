@@ -31,7 +31,7 @@ module.exports = env => {
             switch(env.cms){
                 case 'wordpress':
                     output = {
-                        path: path.resolve(__dirname, 'wp-content/themes/'+ env.theme+'/assets'),
+                        path: path.resolve(__dirname, 'cms/wordpress/wp-content/themes/'+ env.theme+'/assets'),
                         filename: 'js/script.js'
                     }
                     break;
@@ -92,6 +92,22 @@ module.exports = env => {
         ].concat(pluginsResult),
         module: {
             rules: [
+                {
+                    test: /\.jsx?$/,
+                    exclude: /(node_modules)/,
+                    loader: "babel-loader",
+                    options:{
+                        presets:["@babel/preset-env", "@babel/preset-react"]
+                    }
+                },
+                {
+                    test: /\.js?$/,
+                    exclude: /(node_modules)/,
+                    loader: "babel-loader",
+                    options:{
+                        presets:["@babel/preset-env", "@babel/preset-react"]
+                    }
+                },
                 {
                     test: /\.s[ac]ss$/,
                     use: [
