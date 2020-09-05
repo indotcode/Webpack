@@ -5,7 +5,10 @@
 - Noto
 - Playfair
 
-## Компоненты
+## Компоненты JS
 
 - slick-carousel
 - owl-carousel
+
+## Компоненты React
+
