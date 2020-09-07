@@ -18,6 +18,10 @@
 
 *Тема рабочей папки (main)*
 
+# Анализ скриптов
+
+- https://github.com/webpack-contrib/webpack-bundle-analyzer
+
 # Компоненты
 
 ## Компоненты JS

@@ -7,6 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const fs = require('fs');
 const { env } = require('process');
 
@@ -90,6 +91,10 @@ module.exports = env => {
                 $: "jquery",
                 jQuery: "jquery",
                 "window.jQuery": "jquery"
+            }),
+            new BundleAnalyzerPlugin({
+                analyzerHost: server.host,
+                analyzerPort: server.port + 1
             })
         ].concat(pluginsResult),
         module: {
