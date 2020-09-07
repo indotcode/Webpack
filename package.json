@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dist-development": "webpack --mode development --stats-json",
+    "dist-development": "webpack --mode development --env.analyzer=1",
     "dist-production": "webpack --mode production",
     "watch": "webpack --watch --mode development",
     "server": "webpack-dev-server --mode development --open",
@@ -35,6 +35,7 @@
     "html-webpack-plugin": "^4.3.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
+    "os": "^0.1.1",
     "postcss-loader": "^3.0.0",
     "replace-in-file-webpack-plugin": "^1.0.6",
     "sass": "^1.26.10",

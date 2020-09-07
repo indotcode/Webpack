@@ -9,13 +9,13 @@ const CopyPlugin = require('copy-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const fs = require('fs');
+const os = require('os')
 const { env } = require('process');
 
 const server = {
     port: 3000,
-    host: '192.168.0.102'
+    host: os.networkInterfaces().Ethernet[1].address
 }
-
 const isProduction = process.argv[process.argv.indexOf('--mode') + 1] === 'production';
 
 module.exports = env => {
@@ -38,6 +38,12 @@ module.exports = env => {
                     }
                     break;
             }
+        }
+        if(env.analyzer){
+            pluginsResult[pluginsResult.length] =  new BundleAnalyzerPlugin({
+                analyzerHost: server.host,
+                analyzerPort: server.port + 1
+            });
         }
     }
     return {
@@ -91,10 +97,6 @@ module.exports = env => {
                 $: "jquery",
                 jQuery: "jquery",
                 "window.jQuery": "jquery"
-            }),
-            new BundleAnalyzerPlugin({
-                analyzerHost: server.host,
-                analyzerPort: server.port + 1
             })
         ].concat(pluginsResult),
         module: {
