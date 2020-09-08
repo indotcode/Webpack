@@ -11,7 +11,11 @@
     "wordpress-dist-production": "webpack --mode production --env.cms=wordpress --env.theme=main",
     "wordpress-dist-development": "webpack --mode development --env.cms=wordpress --env.theme=main",
     "wordpress-watch-development": "webpack --watch --mode development --env.cms=wordpress --env.theme=main",
-    "wordpress-server-development": "webpack-dev-server --mode development --env.cms=wordpress --env.theme=main"
+    "wordpress-server-development": "webpack-dev-server --mode development --env.cms=wordpress --env.theme=main",
+    "bx-dist-production": "webpack --mode production --env.cms=bitrix",
+    "bx-dist-development": "webpack --mode development --env.cms=bitrix",
+    "bx-watch-development": "webpack --watch --mode development --env.cms=bitrix",
+    "bx-server-development": "webpack-dev-server --mode development --env.cms=bitrix"
   },
   "author": "Alex Tinarskiy (tinarskiy@bk.ru)",
   "license": "ISC",
