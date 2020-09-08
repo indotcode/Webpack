@@ -37,6 +37,12 @@ module.exports = env => {
                         filename: 'js/script.js'
                     }
                     break;
+                case 'bitrix':
+                    output = {
+                        path: path.resolve(__dirname, 'cms/bitrix/assets'),
+                        filename: 'js/script.js'
+                    }
+                    break;
             }
         }
         if(env.analyzer){
