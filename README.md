@@ -18,6 +18,13 @@
 
 *Тема рабочей папки (main)*
 
+### Bitrix
+
+- bx-dist-production - разработка 
+- bx-dist-development - продакшен
+- bx-watch-development - watch разработка
+- bx-server-development - server разработка
+
 # Анализ скриптов
 
 - https://github.com/webpack-contrib/webpack-bundle-analyzer
