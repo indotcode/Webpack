@@ -20,7 +20,7 @@ const isProduction = process.argv[process.argv.indexOf('--mode') + 1] === 'produ
 
 module.exports = env => {
     let mode = isProduction ? 'production' : 'development';
-    let pluginsResult = generateHtmlPlugins('./source');
+    let pluginsResult = generateHtmlPlugins('./source/pug');
     pluginsResult[pluginsResult.length] = new MiniCssExtractPlugin({
         filename: 'css/style.css'
     });
@@ -184,6 +184,15 @@ module.exports = env => {
                     }
                 },
                 {
+                    test: /\.pug$/,
+                    loader: 'pug-loader',
+                    options: {
+                        pretty: true,
+                        compileDebug : true,
+                        filters: false
+                    }
+                },
+                {
                     test: /\.html$/i,
                     loader: 'html-loader',
                     options: {
@@ -193,7 +202,12 @@ module.exports = env => {
                 }
             ]
         },
-        devServer: server
+        devServer: server,
+        resolve: {
+            alias: {
+                vue: 'vue/dist/vue.js'
+            },
+        }
     };
 };
 
@@ -205,7 +219,7 @@ function generateHtmlPlugins(templateDir) {
         const parts = v.split('.');
         const name = parts[0];
         const extension = parts[1];
-        if(extension == 'html'){
+        if(extension === 'pug'){
             resultNew[id] = new HtmlWebpackPlugin({
                 filename: `${name}.html`,
                 template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`)
