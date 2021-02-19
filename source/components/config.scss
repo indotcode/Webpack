@@ -34,6 +34,29 @@ a {
     padding-right: 20px;
 }
 
+$step: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 100, 150);
+
+$ot_map: (m: margin, p:padding);
+
+@each $n, $c in $ot_map{
+    .#{$n}{
+        @each $v in $step {
+            &t#{$v} {
+                #{$c}-top: #{$v}px;
+            }
+            &b#{$v} {
+                #{$c}-bottom: #{$v}px;
+            }
+            &r#{$v} {
+                #{$c}-right: #{$v}px;
+            }
+            &l#{$v} {
+                #{$c}-left: #{$v}px;
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 1406px){
     // .wrapper {
     //     padding-left: 20px;
