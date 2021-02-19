@@ -14,7 +14,7 @@ const { env } = require('process');
 
 const server = {
     port: 3000,
-    host: os.networkInterfaces().Ethernet[1].address
+//     host: os.networkInterfaces().Ethernet[1].address
 }
 const isProduction = process.argv[process.argv.indexOf('--mode') + 1] === 'production';
 
